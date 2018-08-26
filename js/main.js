@@ -39,14 +39,14 @@ const view = {
                           </nav>`,
           mainContent: `<ul id="restaurants-list"></ul>`,
           footerContent: `<span>Copyright (c) 2018 | </span>
-                          <a id="reload" href="/"><strong> Restaurant Reviews </strong></a>
+                          <a id="reload" href="/restaurant-reviews-app/"><strong> Restaurant Reviews </strong></a>
                           <span>| All Rights Reserved</span>`
         }
         break;
       default:
         view.screenContent = {
           headerContent: `<nav>
-                            <h1><a href="/">Restaurant Reviews</a></h1>
+                            <h1><a href="/restaurant-reviews-app/">Restaurant Reviews</a></h1>
                           </nav>`,
           mainContent: `<section id="map-container">
                           <div id="map"></div>
