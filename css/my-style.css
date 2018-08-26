@@ -1,3 +1,9 @@
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-size: 110%;
@@ -534,7 +540,7 @@ section.go-offscreen {
             animation: slideIn-bottom 0.5s forwards;
     opacity: 1; }
     .filterScreen .filter-div {
-      height: calc(30vh - 40px);
+      height: 30vh;
       opacity: 0.9; }
   .listScreen {
     z-index: 5000; } }
