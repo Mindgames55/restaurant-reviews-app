@@ -1,3 +1,16 @@
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/service-worker.js')
+    .then(function(registration) {
+      console.log('Registration successful, scope is:', registration.scope);
+    })
+    .catch(function(error) {
+      console.log('Service worker registration failed, error:', error);
+    });
+  });
+}
+
+
 let restaurant;
 var newMap;
 
@@ -35,22 +48,6 @@ initMap = () => {
   });
 }
 
-/* window.initMap = () => {
-  fetchRestaurantFromURL((error, restaurant) => {
-    if (error) { // Got an error!
-      console.error(error);
-    } else {
-      self.map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 16,
-        center: restaurant.latlng,
-        scrollwheel: false
-      });
-      fillBreadcrumb();
-      DBHelper.mapMarkerForRestaurant(self.restaurant, self.map);
-    }
-  });
-} */
-
 /**
  * Get current restaurant from page URL.
  */
@@ -85,7 +82,7 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
 
   const address = document.getElementById('restaurant-address');
   address.innerHTML = `<i class="fa fa-map-marker"></i> ${restaurant.address}`;
-// TODO: include reating
+
   const ratingDiv = document.getElementById('restaurant-rating');
   const rating = DBHelper.buildRating(self.restaurant);
   rating.defineStars();
@@ -162,7 +159,11 @@ createReviewHTML = (review) => {
   li.appendChild(date);
 
   const rating = document.createElement('p');
-  rating.innerHTML = `Rating: ${review.rating}`;
+  let stars = '';
+  for (let i=0; i<review.rating;i++){
+    stars += `<i class="fa fa-star"></i>`;
+  }
+  rating.innerHTML = stars;
   rating.className = 'rating';
   li.appendChild(rating);
 

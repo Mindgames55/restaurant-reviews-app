@@ -1,3 +1,6 @@
+// TODO: ass11
+// TODO: optimize img
+
 const model ={
   restaurants: [],
   neighborhoods: [],
@@ -12,6 +15,7 @@ const view = {
   main: document.querySelector('.main'),
   footer: document.querySelector('.footer'),
 
+//this method sets the constent on every separate screen
   setContent: (whichScreen) => {
     switch (whichScreen) {
       case 'filterScreen':
@@ -60,12 +64,7 @@ const view = {
       octopus.fetchRestaurants();
       initMap(); // added
 
-///FIX EVENT LISTENER ON MARKERS
-      // view.main.addEventListener('click', function(e){
-      //   console.log(e.target);
-      //   if (e.target !== 'IMG')
-      //   view.homeScreen.tapMap();
-      // });
+      document.getElementById('map-container').addEventListener('click', view.homeScreen.tapMap);
 
       const showListBtn = document.getElementById('list');
       showListBtn.addEventListener('click', view.homeScreen.showList);
@@ -74,31 +73,54 @@ const view = {
       filterBtn.addEventListener('click', view.homeScreen.filter);
     },
     filter: () => {
+      //if the section was already created bring it from offscreen to the foreground. if not create it with "view.filterScreen.init()"
       if (!document.querySelector(`section[class="filterScreen go-offscreen"]`)){
-        view.filterScreen.init();
+        view.filterScreen.init(); //initializes filter screen
         octopus.fetchNeighborhoods();
         octopus.fetchCuisines();
       } else {
           view.filterScreen.clear();
           view.handleScreens(document.querySelector('.filterScreen'));
       }
+      const home = document.querySelector('#homeScreen');
+      home.classList.remove('home-init');
+      view.handleScreens(home);
 
     },
     showList: () => {
+      const home = document.querySelector('#homeScreen[class="go-active"]');
+      if (home) {
+        view.handleScreens(home);
+      }
+
+      if(document.querySelector(`section[class="filterScreen go-active"]`)){
+        view.handleScreens(document.querySelector(`section[class="filterScreen go-active"]`));
+      }
       document.querySelector('body').className = 'auto';
-      view.listScreen.init();
+
+      //if the section was already created bring it from offscreen to the foreground. if not create it with "view.listScreen.init()"
+      if (!document.querySelector(`section[class="listScreen go-offscreen"]`)){
+        view.listScreen.init();
+      } else {
+        view.listScreen.fillRestaurantsHTML(model.restaurants);
+        view.handleScreens(document.querySelector('.listScreen'));
+      }
       const listDiv = document.getElementById('restaurants-list').parentNode;
       listDiv.classList.add('list-div');
       listDiv.classList.remove('filter-div');
 
     },
+    //this method display the map full screen if the map is tapped
     tapMap: () => {
       view.main.classList.toggle('whole-height');
       view.header.classList.toggle('go-offscreen');
       view.footer.classList.toggle('go-offscreen');
+      setTimeout(function(){ //this is necessary to resize mapbox if the container dimension is changed
+        DBHelper.resizeMap(self.newMap);
+      },500);
     }
   },
-
+//FILTER SCREEN
   filterScreen: {
     init: () => {
 
@@ -114,7 +136,7 @@ const view = {
       const cancelBtn = document.getElementById('cancel-filter');
       cancelBtn.addEventListener('click', view.filterScreen.cancel);
     },
-
+    //clear filters to its default values
     clear: () => {
       const cSelect = document.getElementById('cuisines-select');
       const nSelect = document.getElementById('neighborhoods-select');
@@ -122,17 +144,21 @@ const view = {
       cSelect.selectedIndex = 0;
       nSelect.selectedIndex = 0;
     },
-
+//apply the filters on the map and shows the list of the restaurants that meet filter criteria
     apply: () => {
       octopus.updateRestaurants().then(() => {view.homeScreen.showList();});
       view.handleScreens(document.querySelector('.filterScreen'));
     },
-
+//cancel the filter screen and displays the map again
     cancel: () => {
       view.handleScreens(document.querySelector('.go-active'));
+      view.handleScreens(document.querySelector('#homeScreen'));
+      setTimeout(function(){
+        DBHelper.resizeMap(self.newMap);
+      },500);
     }
   },
-
+//LIST OF RESTAURANTS SCREEN
   listScreen: {
     init: () => {
       view.setContent('listScreen');
@@ -140,17 +166,31 @@ const view = {
       document.querySelector('a[id="reload"]').parentNode.classList.add('copyright');
       view.listScreen.fillRestaurantsHTML(model.restaurants);
     },
-
+//fill the restaurant list once the filter is apply or the SHOWLIST button is pressed on home screen
     fillRestaurantsHTML: (restaurants = model.restaurants) => {
       const ul = document.getElementById('restaurants-list');
+      if (ul){
+        octopus.resetRestaurants(model.restaurants);  //resets the previous list if exist
+      }
+      //if there is restaurants meeting the filters it will append the map to the list
+      if (restaurants.length !==0) {
+        document.querySelector('.listScreen').insertBefore(document.getElementById('map-container'), ul.parentNode);
+        document.getElementById('map-container').removeEventListener('click', view.homeScreen.tapMap);
+      }
+      setTimeout(function(){
+        DBHelper.resizeMap(self.newMap);
+        self.newMap.zoomOut(0.5);
+      },500);
+      console.log(restaurants);
       if (restaurants.length !== 0){
         restaurants.forEach(restaurant => {
           ul.appendChild(view.createRestaurantHTML(restaurant));
         });
-      } else {
+      } else {  //shows no restaurant message and show go-back button to filters
           const li = document.createElement('li');
           li.innerHTML = `<p class="no-results">Sorry, there is no restaurants that meet that criteria. Try a different search!</p>
                           <button id="back-to-filters" class="btn">Go Back</button>`;
+          li.className = 'back';
           ul.append(li);
           document.getElementById('back-to-filters').addEventListener('click', function(){
             view.handleScreens(document.querySelector('.listScreen'));
@@ -161,16 +201,15 @@ const view = {
     },
 
   },
-
+//it renders the home screen, and any screen if it is desired to display it instantly
   render: {
     renderActive: () => {
       view.header.innerHTML = view.screenContent.headerContent;
       view.main.innerHTML = view.screenContent.mainContent;
       view.footer.innerHTML = view.screenContent.footerContent;
     },
-
+//similar to render method, but it creates a section which will go as the main section displayed on screen as a slide in animation
     renderUpComing: (whichScreen) => {
-      // if (!document.querySelector(`section[class="${whichScreen} go-offscreen"]`)){ // TODO: remove this if
         const piece = document.createDocumentFragment();
         const section = document.createElement('section');
         section.innerHTML = `<header class="header">${view.screenContent.headerContent}</header>
@@ -181,16 +220,9 @@ const view = {
         document.body.appendChild(piece);
         section.className = whichScreen;
         section.classList.add('go-active');
-
-      // }
-      // else {
-      //   view.handleScreens(section);
-      //
-      //   const section = document.querySelector(`.${whichScreen}`);
-      // }
     }
   },
-
+//populates the neightborhood' s select
   fillNeighborhoodsHTML: (neighborhoods = model.neighborhoods) => {
     console.log(neighborhoods);
     const select = document.getElementById('neighborhoods-select');
@@ -201,7 +233,7 @@ const view = {
       select.append(option);
     });
   },
-
+  //populates the cuisines' s select
   fillCuisinesHTML: (cuisines = model.cuisines) => {
     const select = document.getElementById('cuisines-select');
 
@@ -212,7 +244,7 @@ const view = {
       select.append(option);
     });
   },
-
+//populates the restaurant info on the list of restaurants
   createRestaurantHTML: (restaurant) => {
     const li = document.createElement('li');
 
@@ -228,7 +260,7 @@ const view = {
     const ratingDiv = document.createElement('div');
     const rating = new Rating(restaurant);
     rating.defineStars();
-    ratingDiv.innerHTML = `<span> ${rating.points}</span><span> ${rating.stars}</span><span>(${rating.reviewsNumber})</span>`;
+    ratingDiv.innerHTML = `<span> ${rating.points}</span><span> ${rating.stars}</span><span>(${rating.reviewsNumber})</span> <span>${restaurant.cuisine_type} </span>`;
     li.append(ratingDiv);
 
     const neighborhood = document.createElement('p');
@@ -246,23 +278,16 @@ const view = {
 
     return li;
   },
-
+// this method toggles visibility of screens
   handleScreens: (toggledScreen) => {
     toggledScreen.classList.toggle('go-active');
     toggledScreen.classList.toggle('go-offscreen');
   }
 }
 
-
-/**
- * Fetch neighborhoods and cuisines as soon as the page is loaded.
- */
+//INITIALIZATION************************
 document.addEventListener('DOMContentLoaded', (event) => {
-
   view.homeScreen.init();
-
-
-
 });
 
 const octopus = {
@@ -271,9 +296,7 @@ const octopus = {
       if (error) { // Got an error
         console.error(error);
       } else {
-        console.log('neigth');
         model.neighborhoods = neighborhoods;
-        console.log(model.neighborhoods);
         view.fillNeighborhoodsHTML();
       }
     });
@@ -305,15 +328,14 @@ const octopus = {
     restaurants.forEach(restaurant => {
       // Add marker to the map
       const marker = DBHelper.mapMarkerForRestaurant(restaurant, self.newMap);
-      marker.addEventListener("click", onClick);
+      marker.on("click", onClick);
       function onClick() {
-        console.log('marker click');
         window.location.href = marker.options.url;
       }
       self.markers.push(marker);
     });
   },
-
+//this method is gonna be called every time a filter is applied. RETURNS A PROMISE
   updateRestaurants: () => {
     return new Promise(function(resolve, reject){
       const cSelect = document.getElementById('cuisines-select');
@@ -330,11 +352,7 @@ const octopus = {
           console.error(error);
         } else {
           model.restaurants = restaurants;
-          console.log(model.restaurants);
-          const ul = document.getElementById('restaurants-list');
-          if (ul){
-            octopus.resetRestaurants(model.restaurants);
-          }
+          octopus.resetMarkers();
           octopus.addMarkersToMap(model.restaurants);
           resolve();
         }
@@ -342,22 +360,24 @@ const octopus = {
     });
 
   },
-
+  // Remove all restaurants
   resetRestaurants: (restaurants) => {
-    // Remove all restaurants
     model.restaurants = [];
     const ul = document.getElementById('restaurants-list');
     ul.innerHTML = '';
 
-    // Remove all map markers
+    model.restaurants = restaurants;
+  },
+
+  // Remove all map markers
+  resetMarkers: () => {
     if (self.markers) {
       self.markers.forEach(marker => marker.remove());
     }
     self.markers = [];
-    model.restaurants = restaurants;
   }
 }
-
+// MAPbox API
 initMap = () => {
   self.newMap = L.map('map', {
         center: [40.722216, -73.987501],
@@ -372,5 +392,4 @@ initMap = () => {
       'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     id: 'mapbox.streets'
   }).addTo(newMap);
-
 }

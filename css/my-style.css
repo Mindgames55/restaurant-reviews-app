@@ -11,7 +11,7 @@ a {
   text-decoration: none; }
 
 ul {
-  line-height: 200%;
+  line-height: 150%;
   list-style: none;
   padding: 0;
   margin: 0; }
@@ -24,9 +24,12 @@ h1 {
   margin: 0; }
 
 img {
-  max-width: 100vw;
+  max-width: 100%;
   margin: 0;
   padding: 0; }
+
+*::-webkit-scrollbar {
+  display: none !important; }
 
 .header, .footer, .filter-options .div-header,
 .filter-options .div-footer, .inside #footer {
@@ -76,6 +79,10 @@ body.overflowHidden {
 body.auto {
   overflow: auto; }
 
+.home-init {
+  -webkit-animation-duration: 0s !important;
+          animation-duration: 0s !important; }
+
 .header {
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -109,10 +116,16 @@ body.auto {
     -webkit-animation: slideUp 0.5s forwards;
             animation: slideUp 0.5s forwards; }
 
+.listScreen #map-container {
+  height: 40vh; }
+  .listScreen #map-container #map {
+    width: 100%;
+    height: 100%; }
+
 .main {
-  height: 90vh; }
+  height: 80vh; }
   .main.filter-div {
-    height: calc(90vh - 40px);
+    height: calc(80vh - 40px);
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -130,6 +143,7 @@ body.auto {
       margin: 10px;
       padding: 0 10px; }
   .main.list-div {
+    margin-top: 10px;
     height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
@@ -138,12 +152,14 @@ body.auto {
     .main.list-div ul {
       display: grid;
       grid-template-rows: auto;
-      grid-row-gap: 20px;
       padding-bottom: 20px; }
+      .main.list-div ul h1 {
+        color: #5f646a; }
     .main.list-div li > *:not(img) {
       margin-left: 10px; }
     .main.list-div li {
-      display: grid; }
+      display: grid;
+      padding-bottom: 20px; }
       .main.list-div li a {
         background-color: orange;
         padding: 5px;
@@ -174,8 +190,7 @@ body.auto {
     height: 100%; }
   .main #map {
     height: 100%;
-    background-color: #ccc;
-    z-index: -1; }
+    background-color: #ccc; }
   .main.whole-height {
     -webkit-animation: grow 0.5s forwards;
             animation: grow 0.5s forwards; }
@@ -185,14 +200,11 @@ body.auto {
   margin: 5px; }
 
 section.go-offscreen {
-  position: relative;
-  top: -100%;
-  -webkit-animation: slideDown 0.5s forwards;
-          animation: slideDown 0.5s forwards; }
+  display: none; }
 
 @-webkit-keyframes grow {
   from {
-    height: 90vh; }
+    height: 80vh; }
   to {
     height: 100vh;
     position: relative;
@@ -200,7 +212,7 @@ section.go-offscreen {
 
 @keyframes grow {
   from {
-    height: 90vh; }
+    height: 80vh; }
   to {
     height: 100vh;
     position: relative;
@@ -221,13 +233,10 @@ section.go-offscreen {
 /*MAP====================================*/
 /* FILTER FOOTER================================*/
 .footer {
-  position: relative;
-  top: -10vh;
   width: 100%;
   -webkit-box-align: center;
       -ms-flex-align: center;
-          align-items: center;
-  z-index: 0; }
+          align-items: center; }
   .footer #filter {
     margin-left: auto; }
   .footer.go-offscreen {
@@ -276,12 +285,42 @@ section.go-offscreen {
   to {
     top: 0; } }
 
+@-webkit-keyframes slideIn-left {
+  from { }
+  to {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+    z-index: 3000; } }
+
+@keyframes slideIn-left {
+  from { }
+  to {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+    z-index: 3000; } }
+
+@-webkit-keyframes slideIn-bottom {
+  from {
+    top: 100%; }
+  to {
+    top: 50%;
+    z-index: 3000; } }
+
+@keyframes slideIn-bottom {
+  from {
+    top: 100%; }
+  to {
+    top: 50%;
+    z-index: 3000; } }
+
 .go-active {
   position: absolute;
   width: 100%;
   z-index: 5;
-  -webkit-animation: slideIn 0.5s forwards;
-          animation: slideIn 0.5s forwards; }
+  -webkit-animation: slideIn forwards;
+          animation: slideIn forwards;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s; }
 
 /* ====================== Restaurant Details ====================== */
 .inside {
@@ -291,7 +330,7 @@ section.go-offscreen {
     position: -webkit-sticky;
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 10000;
     /* Display list items side by side */
     /* Add a slash symbol (/) before/behind each list item */
     /* Add a color to all links inside the list */
@@ -299,7 +338,16 @@ section.go-offscreen {
     .inside header nav {
       background-color: #252831;
       text-align: center;
-      padding: 25px 0; }
+      height: 10vh;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center; }
     .inside header #breadcrumb {
       width: calc(100% - 20px);
       padding: 10px 20px;
@@ -320,7 +368,7 @@ section.go-offscreen {
     .inside header #breadcrumb li a:hover {
       color: orange; }
   .inside #map {
-    min-height: 50vh;
+    min-height: 40vh;
     background-color: #ccc; }
   .inside #footer {
     width: 100%; }
@@ -337,7 +385,9 @@ section.go-offscreen {
     display: grid;
     grid-template-rows: auto;
     grid-row-gap: 10px;
-    padding: 20px 0; }
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center; }
     #maincontent #restaurant-container p {
       margin: 0; }
     #maincontent #restaurant-container img {
@@ -364,6 +414,7 @@ section.go-offscreen {
 
 #reviews-container {
   padding: 20px;
+  padding-top: 0;
   background-color: #eee; }
   #reviews-container h2 {
     color: #f58500;
@@ -392,15 +443,113 @@ section.go-offscreen {
     #reviews-list li .date {
       text-align: right; }
     #reviews-list li .rating {
-      padding: 5px;
-      margin: 10px;
+      margin: 0;
       margin-right: 0;
       width: auto;
-      background-color: orange;
-      color: #fff;
+      color: orange;
       grid-column: 1/2;
       text-align: center; }
+      #reviews-list li .rating i {
+        margin: 0 3px; }
     #reviews-list li .comments {
       margin: 10px;
+      margin-top: 0;
       grid-column: 1/-1;
       line-height: 1.5em; }
+
+@media screen and (min-width: 600px) {
+  .listScreen {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr;
+    grid-template-rows: 1fr 3fr 1fr;
+    height: 100vh;
+    overflow: hidden; }
+    .listScreen #map-container {
+      grid-column: -2/-1;
+      grid-row: 2/auto;
+      height: 80vh !important; }
+      .listScreen #map-container #map {
+        height: 100%; }
+    .listScreen .header {
+      grid-column: 1/-1; }
+    .listScreen .copyright {
+      position: absolute;
+      bottom: 0; }
+  .list-div ul {
+    grid-template-columns: 1fr;
+    grid-column-gap: 10px;
+    max-height: 80vh;
+    overflow: auto; }
+  .list-div img {
+    width: calc(100% - 10px); }
+  .inside #restaurant-container {
+    grid-template-columns: 1fr 1fr; }
+    .inside #restaurant-container img {
+      grid-row: 1/5;
+      grid-column: 1/2; } }
+
+@media screen and (min-width: 1000px) {
+  #maincontent {
+    grid-template-columns: 1fr 2.5fr;
+    grid-column-gap: 10px; }
+    #maincontent #map {
+      min-height: 0;
+      height: 100%; }
+    #maincontent #restaurant-container {
+      padding: 0;
+      grid-row-gap: 0; }
+    #maincontent #reviews-container {
+      grid-column: 1/-1; } }
+
+@media screen and (min-width: 1200px) {
+  #maincontent {
+    grid-template-columns: 1fr 2.5fr; }
+  .listScreen ul {
+    grid-template-columns: 1fr 1fr; } }
+
+@media screen and (min-height: 1000px) and (max-width: 1100px) {
+  .listScreen {
+    grid-template-columns: 100%; }
+    .listScreen #map-container {
+      height: 30vh !important; }
+    .listScreen ul {
+      max-height: 50vh;
+      grid-template-columns: 1fr 1fr; }
+      .listScreen ul img {
+        width: 100%; } }
+
+@media screen and (orientation: portrait) {
+  #homeScreen {
+    display: block;
+    -webkit-animation-duration: 0s;
+            animation-duration: 0s; }
+  .back {
+    grid-column: 1/-1; }
+    .back p {
+      text-align: center; }
+  .filterScreen {
+    opacity: 0.9;
+    height: 50%;
+    -webkit-animation: slideIn-bottom 0.5s forwards;
+            animation: slideIn-bottom 0.5s forwards;
+    opacity: 1; }
+    .filterScreen .filter-div {
+      height: calc(30vh - 40px);
+      opacity: 0.9; }
+  .listScreen {
+    z-index: 5000; } }
+
+@media screen and (orientation: landscape) {
+  #homeScreen {
+    display: block;
+    -webkit-animation-duration: 0s;
+            animation-duration: 0s; }
+  .filterScreen {
+    opacity: 0.9;
+    max-width: 350px;
+    left: 100%;
+    top: 0;
+    -webkit-animation: slideIn-left 0.5s forwards;
+            animation: slideIn-left 0.5s forwards; }
+  .listScreen {
+    z-index: 5000; } }

@@ -166,24 +166,17 @@ class DBHelper {
       marker.addTo(newMap);
     return marker;
   }
-  /* static mapMarkerForRestaurant(restaurant, map) {
-    const marker = new google.maps.Marker({
-      position: restaurant.latlng,
-      title: restaurant.name,
-      url: DBHelper.urlForRestaurant(restaurant),
-      map: map,
-      animation: google.maps.Animation.DROP}
-    );
-    return marker;
-  } */
-
+//resize method if the map container is resized
+  static resizeMap(map){
+    map.invalidateSize();
+  }
+//this is to build the rating div on list of restaurants
   static buildRating(restaurant){
     return new Rating(restaurant);
     }
-
 }
 
-
+//function to compute the average rating
 getRatingAverage = (reviews) => {
   let points = 0;
   for (i=0; i<reviews.length; i++){
@@ -191,7 +184,7 @@ getRatingAverage = (reviews) => {
   }
   return points/reviews.length;
 }
-
+//it is used to round the average rating to the nearest .5 and to display half of stars
 nearestFive = (x) => 5 * Math.round(x/5);
 
 class Rating{
@@ -200,6 +193,7 @@ class Rating{
     this.stars = '';
     this.reviewsNumber = restaurant.reviews.length;
   }
+  //difine the <i> tags inserted based on the average rating
   defineStars(){
     const floatingPoint = nearestFive((this.points - Math.floor(this.points))*10);
     for (let i=0;i<Math.floor(this.points);i++){
