@@ -1,0 +1,15 @@
+{
+  "short_name": "Reviews",
+  "name": "Restaurant Reviews",
+  "icons": [
+    {
+      "src": "/img/icon.png",
+      "type": "image/png",
+      "sizes": "1500x1500"
+    }
+  ],
+  "start_url": "https://mindgames55.github.io/restaurant-reviews-app/",
+  "background_color": "#252831",
+  "display": "standalone",
+  "theme_color": "#252831"
+}
