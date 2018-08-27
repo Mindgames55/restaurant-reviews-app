@@ -582,4 +582,6 @@ section.go-offscreen {
     -webkit-animation: slideIn-left 0.5s forwards;
             animation: slideIn-left 0.5s forwards; }
   .listScreen {
-    z-index: 5000; } }
+    z-index: 5000; }
+    .listScreen .list-div {
+      margin-top: 0; } }
