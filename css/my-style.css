@@ -132,7 +132,7 @@ body.auto {
             animation: slideUp 0.5s forwards; }
 
 .listScreen #map-container {
-  height: 40vh; }
+  height: 40%; }
   .listScreen #map-container #map {
     width: 100%;
     height: 100%; }
@@ -140,7 +140,7 @@ body.auto {
 .main {
   height: 80%; }
   .main.filter-div {
-    height: 80vh;
+    height: 80%;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -162,7 +162,7 @@ body.auto {
     height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
-    min-height: 80vh;
+    min-height: 80%;
     background-color: #eee; }
     .main.list-div ul {
       display: grid;
@@ -219,19 +219,19 @@ section.go-offscreen {
 
 @-webkit-keyframes grow {
   from {
-    height: 80vh; }
+    height: 80%; }
   to {
-    height: 100vh;
+    height: 100%;
     position: relative;
-    top: -10vh; } }
+    top: -10%; } }
 
 @keyframes grow {
   from {
-    height: 80vh; }
+    height: 80%; }
   to {
-    height: 100vh;
+    height: 100%;
     position: relative;
-    top: -10vh; } }
+    top: -10%; } }
 
 @-webkit-keyframes slideUp {
   from { }
@@ -283,7 +283,7 @@ section.go-offscreen {
 
 /*FILTER SCREEN =======================*/
 .filter-options {
-  height: 100vh; }
+  height: 100%; }
 
 .filterScreen {
   background-color: #eee; }
@@ -359,7 +359,7 @@ section.go-offscreen {
     .inside header nav {
       background-color: #252831;
       text-align: center;
-      height: 10vh;
+      height: 10%;
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
@@ -389,7 +389,7 @@ section.go-offscreen {
     .inside header #breadcrumb li a:hover {
       color: orange; }
   .inside #map {
-    min-height: 40vh;
+    min-height: 40%;
     background-color: #ccc; }
   .inside #footer {
     width: 100%; }
@@ -483,12 +483,12 @@ section.go-offscreen {
     display: grid;
     grid-template-columns: 2fr 1.5fr;
     grid-template-rows: 1fr 3fr 1fr;
-    height: 100vh;
+    height: 100%;
     overflow: hidden; }
     .listScreen #map-container {
       grid-column: -2/-1;
       grid-row: 2/auto;
-      height: 80vh !important; }
+      height: 80% !important; }
       .listScreen #map-container #map {
         height: 100%; }
     .listScreen .header {
@@ -499,7 +499,7 @@ section.go-offscreen {
   .list-div ul {
     grid-template-columns: 1fr;
     grid-column-gap: 10px;
-    max-height: 80vh;
+    max-height: 80%;
     overflow: auto; }
   .list-div img {
     width: 100%; }
@@ -532,9 +532,9 @@ section.go-offscreen {
   .listScreen {
     grid-template-columns: 100%; }
     .listScreen #map-container {
-      height: 30vh !important; }
+      height: 30% !important; }
     .listScreen ul {
-      max-height: 50vh;
+      max-height: 50%;
       grid-template-columns: 1fr 1fr; }
       .listScreen ul img {
         width: 100%; } }
@@ -549,12 +549,12 @@ section.go-offscreen {
     .back p {
       text-align: center; }
   .filterScreen {
-    height: 50vh;
+    height: 50%;
     -webkit-animation: slideIn-bottom 0.5s forwards;
             animation: slideIn-bottom 0.5s forwards;
     opacity: 1; }
     .filterScreen .filter-div {
-      height: 30vh; }
+      height: 30%; }
   .listScreen {
     z-index: 5000; } }
 
@@ -564,7 +564,7 @@ section.go-offscreen {
     -webkit-animation-duration: 0s;
             animation-duration: 0s; }
   .filterScreen {
-    height: 100vh;
+    height: 100%;
     opacity: 0.9;
     max-width: 350px;
     left: 100%;
