@@ -16,8 +16,7 @@ body {
   background-color: #fdfdfd;
   color: #333;
   height: 100vh;
-  width: 100%;
-  position: fixed; }
+  width: 100%; }
 
 a {
   text-decoration: none; }
@@ -86,7 +85,8 @@ img {
   display: none; }
 
 body.overflowHidden {
-  overflow: hidden; }
+  overflow: hidden;
+  position: fixed; }
 
 body.auto {
   overflow: auto; }
