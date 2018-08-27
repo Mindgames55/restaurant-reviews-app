@@ -3,9 +3,14 @@
   "name": "Restaurant Reviews",
   "icons": [
     {
-      "src": "/img/icon.png",
+      "src": "img/icons-192.png",
       "type": "image/png",
-      "sizes": "1500x1500"
+      "sizes": "192x192"
+    },
+    {
+      "src": "img/icons-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ],
   "start_url": "https://mindgames55.github.io/restaurant-reviews-app/",
