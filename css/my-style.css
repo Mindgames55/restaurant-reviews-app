@@ -490,19 +490,17 @@ section.go-offscreen {
     display: grid;
     grid-template-columns: 2fr 1.5fr;
     grid-template-rows: 1fr 3fr 1fr;
-    height: 100%;
-    overflow: hidden; }
+    height: 100%; }
     .listScreen #map-container {
       grid-column: -2/-1;
       grid-row: 2/auto;
       height: 80% !important; }
       .listScreen #map-container #map {
         height: 100%; }
-    .listScreen .header {
-      grid-column: 1/-1; }
-    .listScreen .copyright {
-      position: absolute;
-      bottom: 0; }
+    .listScreen .header,
+    .listScreen .footer {
+      grid-column: 1/-1;
+      height: 100%; }
   .list-div ul {
     grid-template-columns: 1fr;
     grid-column-gap: 10px;
