@@ -91,6 +91,9 @@ body.overflowHidden {
 body.auto {
   overflow: auto; }
 
+#homeScreen {
+  height: 100%; }
+
 .home-init {
   -webkit-animation-duration: 0s !important;
           animation-duration: 0s !important; }
