@@ -292,6 +292,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   let deferredPrompt;
 
   window.addEventListener('beforeinstallprompt', (e) => {
+    console.log('beforeinstallevent fired');
     // Prevent Chrome 67 and earlier from automatically showing the prompt
     e.preventDefault();
     // Stash the event so it can be triggered later.
