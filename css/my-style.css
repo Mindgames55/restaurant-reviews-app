@@ -44,7 +44,7 @@ img {
 
 .header, .footer, .filter-options .div-header,
 .filter-options .div-footer, .inside #footer {
-  height: 10vh;
+  height: 10%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -135,7 +135,7 @@ body.auto {
     height: 100%; }
 
 .main {
-  height: 80vh; }
+  height: 80%; }
   .main.filter-div {
     height: 80vh;
     display: -webkit-box;
