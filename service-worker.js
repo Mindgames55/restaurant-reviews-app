@@ -7,7 +7,7 @@ var filesToCache = [
   'index.html',
   'js/main.js',
   'js/dbhelper.js'
-];
+];//
 
 var staticCacheName = 'pages-cache-v4';
 
