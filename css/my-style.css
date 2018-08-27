@@ -132,7 +132,7 @@ body.auto {
 .main {
   height: 80vh; }
   .main.filter-div {
-    height: calc(80vh - 40px);
+    height: 80vh;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -356,7 +356,7 @@ section.go-offscreen {
           -ms-flex-pack: center;
               justify-content: center; }
     .inside header #breadcrumb {
-      width: calc(100% - 20px);
+      width: 100%;
       padding: 10px 20px;
       padding-right: 0;
       list-style: none;
@@ -488,7 +488,7 @@ section.go-offscreen {
     max-height: 80vh;
     overflow: auto; }
   .list-div img {
-    width: calc(100% - 10px); }
+    width: 100%; }
   .inside #restaurant-container {
     grid-template-columns: 1fr 1fr; }
     .inside #restaurant-container img {
@@ -541,7 +541,7 @@ section.go-offscreen {
             animation: slideIn-bottom 0.5s forwards;
     opacity: 1; }
     .filterScreen .filter-div {
-      height: calc(30vh - 40px);
+      height: 30vh;
       opacity: 0.9; }
   .listScreen {
     z-index: 5000; } }
