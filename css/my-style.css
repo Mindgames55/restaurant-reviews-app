@@ -136,7 +136,7 @@ body.auto {
   height: 10vh; }
 
 .listScreen #map-container {
-  height: 40%;
+  height: 40vh;
   width: 100%; }
   .listScreen #map-container #map {
     width: 100%;
@@ -393,8 +393,10 @@ section.go-offscreen {
       text-decoration: none; }
     .inside header #breadcrumb li a:hover {
       color: orange; }
+  .inside #map-container {
+    min-height: 40vh; }
   .inside #map {
-    min-height: 40%;
+    height: 100%;
     background-color: #ccc; }
   .inside #footer {
     width: 100%; }
