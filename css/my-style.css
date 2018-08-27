@@ -277,6 +277,12 @@ section.go-offscreen {
 .filter-options {
   height: 100vh; }
 
+.filterScreen {
+  background-color: #eee; }
+  .filterScreen .footer {
+    position: absolute;
+    bottom: 0; }
+
 .right {
   margin-left: auto !important; }
 
@@ -535,14 +541,12 @@ section.go-offscreen {
     .back p {
       text-align: center; }
   .filterScreen {
-    opacity: 0.9;
     height: 50%;
     -webkit-animation: slideIn-bottom 0.5s forwards;
             animation: slideIn-bottom 0.5s forwards;
     opacity: 1; }
     .filterScreen .filter-div {
-      height: 30vh;
-      opacity: 0.9; }
+      height: 30vh; }
   .listScreen {
     z-index: 5000; } }
 
