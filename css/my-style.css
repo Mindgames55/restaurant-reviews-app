@@ -500,7 +500,7 @@ section.go-offscreen {
     .listScreen .header,
     .listScreen .footer {
       grid-column: 1/-1;
-      height: 100%; }
+      height: 100% !important; }
   .list-div ul {
     grid-template-columns: 1fr;
     grid-column-gap: 10px;
