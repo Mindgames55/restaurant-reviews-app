@@ -35,7 +35,7 @@ const view = {
       case 'listScreen':
         view.screenContent = {
           headerContent: `<nav>
-                            <h1><a href="/">Restaurant Reviews</a></h1>
+                            <h1><a href="/restaurant-reviews-app/">Restaurant Reviews</a></h1>
                           </nav>`,
           mainContent: `<ul id="restaurants-list"></ul>`,
           footerContent: `<span>Copyright (c) 2018 | </span>
