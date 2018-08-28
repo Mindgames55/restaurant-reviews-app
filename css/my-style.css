@@ -142,6 +142,22 @@ body.auto {
     width: 100%;
     height: 100%; }
 
+.back {
+  grid-column: 1/-1;
+  grid-row: 1/2;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+  .back p {
+    text-align: center; }
+
 .main {
   height: 80%; }
   .main.filter-div {
@@ -167,7 +183,7 @@ body.auto {
     height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
-    min-height: 80vh;
+    min-height: 100%;
     background-color: #eee; }
     .main.list-div ul {
       display: grid;
@@ -197,8 +213,7 @@ body.auto {
         font-weight: bold;
         width: -webkit-fit-content;
         width: -moz-fit-content;
-        width: fit-content;
-        margin: auto; }
+        width: fit-content; }
       .main.list-div li p {
         margin-top: 0;
         margin-bottom: 0; }
@@ -510,6 +525,8 @@ section.go-offscreen {
     .listScreen .header,
     .listScreen .footer {
       grid-column: 1/-1; }
+    .listScreen .footer {
+      grid-row: -2/-1; }
   .list-div ul {
     grid-template-columns: 1fr;
     grid-column-gap: 10px;
@@ -557,9 +574,12 @@ section.go-offscreen {
 
 @media screen and (min-height: 1000px) and (max-width: 1100px) {
   .listScreen {
-    grid-template-columns: 100%; }
+    grid-template-columns: 100%;
+    grid-template-rows: 1fr 30vh 50vh 1fr; }
     .listScreen #map-container {
-      height: 30% !important; }
+      height: 100%; }
+    .listScreen .list-div {
+      grid-row: 3/4; }
     .listScreen ul {
       max-height: 50%;
       grid-template-columns: 1fr 1fr; }
@@ -573,10 +593,6 @@ section.go-offscreen {
     display: block;
     -webkit-animation-duration: 0s;
             animation-duration: 0s; }
-  .back {
-    grid-column: 1/-1; }
-    .back p {
-      text-align: center; }
   .filterScreen {
     height: 50%;
     -webkit-animation: slideIn-bottom 0.5s forwards;
