@@ -167,7 +167,7 @@ body.auto {
     height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
-    min-height: 80%;
+    min-height: 80vh;
     background-color: #eee; }
     .main.list-div ul {
       display: grid;
@@ -495,7 +495,7 @@ section.go-offscreen {
     .listScreen #map-container {
       grid-column: -2/-1;
       grid-row: 2/auto;
-      height: 80% !important; }
+      height: 80vh !important; }
       .listScreen #map-container #map {
         height: 100%; }
     .listScreen .header,
