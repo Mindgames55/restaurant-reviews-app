@@ -543,6 +543,8 @@ section.go-offscreen {
     grid-template-rows: 60vh auto; } }
 
 @media screen and (min-width: 1000px) {
+  .auto {
+    overflow: hidden; }
   #maincontent {
     grid-template-columns: 1fr 2.5fr;
     grid-column-gap: 10px;
