@@ -544,7 +544,7 @@ section.go-offscreen {
 
 @media screen and (min-width: 1000px) {
   .auto {
-    overflow: hidden; }
+    overflow: hidden !important; }
   #maincontent {
     grid-template-columns: 1fr 2.5fr;
     grid-column-gap: 10px;
