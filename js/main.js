@@ -1,6 +1,3 @@
-// TODO: ass11
-// TODO: optimize img
-
 const model ={
   restaurants: [],
   neighborhoods: [],
@@ -247,7 +244,6 @@ const view = {
   },
 //populates the neightborhood' s select
   fillNeighborhoodsHTML: (neighborhoods = model.neighborhoods) => {
-    console.log(neighborhoods);
     const select = document.getElementById('neighborhoods-select');
     neighborhoods.forEach(neighborhood => {
       const option = document.createElement('option');
@@ -274,10 +270,10 @@ const view = {
     const image = document.createElement('img');
     image.className = 'restaurant-img';
     image.src = DBHelper.imageUrlForRestaurant(restaurant);
-    image.setAttribute("alt", restaurant.name);
+    image.setAttribute("alt", `An image of the restaurant ${restaurant.name} with cuisine ${restaurant.cuisine_type}`);
     li.append(image);
 
-    const name = document.createElement('h1');
+    const name = document.createElement('h2');
     name.innerHTML = restaurant.name;
     li.append(name);
 
@@ -314,7 +310,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   view.homeScreen.init();
 
   let deferredPrompt;
-
+// it is not firing
   window.addEventListener('beforeinstallprompt', (e) => {
     console.log('beforeinstallevent fired');
     // Prevent Chrome 67 and earlier from automatically showing the prompt

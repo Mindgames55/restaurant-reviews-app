@@ -30,7 +30,8 @@ ul {
     margin: 0;
     padding: 0; }
 
-h1 {
+h1,
+h2 {
   font-size: 110%;
   margin: 0; }
 
@@ -476,11 +477,11 @@ section.go-offscreen {
   padding: 20px;
   padding-top: 0;
   background-color: #eee; }
-  #reviews-container h2 {
+  #reviews-container h3 {
     color: #f58500;
     font-weight: 300;
     letter-spacing: -1px;
-    padding-bottom: 1pt; }
+    padding: 20px; }
 
 #reviews-list {
   display: grid;

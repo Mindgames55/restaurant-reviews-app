@@ -1,5 +1,5 @@
 let restaurant;
-var newMap;
+let newMap;
 
 /**
  * Initialize map as soon as the page is loaded.
@@ -21,6 +21,7 @@ initMap = () => {
         zoom: 16,
         scrollWheelZoom: false
       });
+
       L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.jpg70?access_token={mapboxToken}', {
         mapboxToken: 'pk.eyJ1IjoibWF5Z3VlbiIsImEiOiJjamtxODg3a28xbHluM3dwOGh3dndpMzFlIn0.yTv3Ada0WEVS3uUlLk9-ow',
         maxZoom: 18,
@@ -28,7 +29,7 @@ initMap = () => {
           '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
           'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         id: 'mapbox.streets'
-      }).addTo(newMap);
+      }).addTo(self.newMap);
       fillBreadcrumb();
       DBHelper.mapMarkerForRestaurant(self.restaurant, self.newMap);
     }
@@ -114,7 +115,7 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
  */
 fillReviewsHTML = (reviews = self.restaurant.reviews) => {
   const container = document.getElementById('reviews-container');
-  const title = document.createElement('h2');
+  const title = document.createElement('h3');
   title.innerHTML = 'Reviews';
   container.appendChild(title);
 
