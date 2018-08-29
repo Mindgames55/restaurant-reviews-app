@@ -9,7 +9,7 @@ var filesToCache = [
   'js/dbhelper.js'
 ];//
 
-var staticCacheName = 'pages-cache-v8';
+var staticCacheName = 'pages-cache-v11';
 
 self.addEventListener('install', function(event) {
   console.log('Attempting to install service worker and cache static assets');
@@ -45,7 +45,7 @@ self.addEventListener('fetch', function(event) {
 });
 
 self.addEventListener('activate', function(event) {
-  console.log('Activating new service worker...');
+  console.log('Activating new service worker and getting rid of old caches...');
   event.waitUntil(
     caches.keys().then(function(cacheNames) {
       return Promise.all(

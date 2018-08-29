@@ -155,8 +155,8 @@ const view = {
     },
 //cancel the filter screen and displays the map again
     cancel: () => {
-      view.handleScreens(document.querySelector('.go-active'));
-      view.handleScreens(document.querySelector('#homeScreen'));
+      view.handleScreens(document.querySelector('.filterScreen'));
+      document.getElementById('filter').focus();
       setTimeout(function(){
         DBHelper.resizeMap(self.newMap);
       },500);

@@ -50,7 +50,7 @@ img {
   background: #0275d8;
   color: white;
   padding: 3px;
-  z-index: 100; }
+  z-index: 10000; }
   .skip-link:focus {
     top: 0; }
 
