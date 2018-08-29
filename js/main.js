@@ -82,9 +82,10 @@ const view = {
           view.filterScreen.clear();
           view.handleScreens(document.querySelector('.filterScreen'));
       }
-      const home = document.querySelector('#homeScreen');
-      home.classList.remove('home-init');
-      view.handleScreens(home);
+      document.getElementById("neighborhoods-select").focus();
+      // const home = document.querySelector('#homeScreen');
+      // home.classList.remove('home-init');
+      // view.handleScreens(home);
 
     },
     showList: () => {
@@ -129,9 +130,15 @@ const view = {
 
       const clearBtn = document.getElementById('clear');
       clearBtn.addEventListener('click', view.filterScreen.clear);
+      clearBtn.addEventListener('keydown', function(e){
+        view.filterScreen.trapTab(e);
+      });
 
       const applyBtn = document.getElementById('apply-filter');
       applyBtn.addEventListener('click', view.filterScreen.apply);
+      applyBtn.addEventListener('keydown', function(e){
+        view.filterScreen.trapTab(e);
+      });
 
       const cancelBtn = document.getElementById('cancel-filter');
       cancelBtn.addEventListener('click', view.filterScreen.cancel);
@@ -156,6 +163,23 @@ const view = {
       setTimeout(function(){
         DBHelper.resizeMap(self.newMap);
       },500);
+    },
+    //traps the focus inside the filters screen
+    trapTab: (e) => {
+      const apply = document.getElementById("apply-filter");
+      const clear = document.getElementById("clear");
+      if (e.keyCode === 9){
+        if (e.shiftKey){
+          if (document.activeElement === clear) {
+            e.preventDefault();
+            apply.focus();
+          }
+        }
+        else if (document.activeElement === apply) {
+          e.preventDefault();
+          clear.focus();
+        }
+      }
     }
   },
 //LIST OF RESTAURANTS SCREEN
@@ -176,12 +200,11 @@ const view = {
       if (restaurants.length !==0) {
         document.querySelector('.listScreen').insertBefore(document.getElementById('map-container'), ul.parentNode);
         document.getElementById('map-container').removeEventListener('click', view.homeScreen.tapMap);
-      }
+      } else view.handleScreens(document.querySelector('#homeScreen'));
       setTimeout(function(){
         DBHelper.resizeMap(self.newMap);
         self.newMap.zoomOut(0.5);
       },500);
-      console.log(restaurants);
       if (restaurants.length !== 0){
         restaurants.forEach(restaurant => {
           ul.appendChild(view.createRestaurantHTML(restaurant));
@@ -251,6 +274,7 @@ const view = {
     const image = document.createElement('img');
     image.className = 'restaurant-img';
     image.src = DBHelper.imageUrlForRestaurant(restaurant);
+    image.setAttribute("alt", restaurant.name);
     li.append(image);
 
     const name = document.createElement('h1');
@@ -351,6 +375,7 @@ const octopus = {
       // Add marker to the map
       const marker = DBHelper.mapMarkerForRestaurant(restaurant, self.newMap);
       marker.on("click", onClick);
+      marker.tabIndex = -1;
       function onClick() {
         window.location.href = marker.options.url;
       }

@@ -15,14 +15,17 @@
 </head>
 
   <body class="overflowHidden">
-    <section id="homeScreen" class="go-active home-init">
+    <section id="homeScreen" class="go-active">
       <header class="header">
 
       </header>
+    <!-- this is to avoid navigate the entire map including markers before getting into filters -->
+      <a href="#action-btn-footer" class="skip-link">Skip to action buttons</a>
+
       <main class="main">
 
       </main>
-      <footer class="footer">
+      <footer id="action-btn-footer" class="footer" role="navigation" tabindex="-1">
 
       </footer>
     </section>
