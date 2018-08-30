@@ -507,11 +507,10 @@ section.go-offscreen {
       text-align: right; }
     #reviews-list li .rating {
       margin: 0;
-      margin-right: 0;
+      margin-left: 10px;
       width: auto;
       color: orange;
-      grid-column: 1/2;
-      text-align: center; }
+      grid-column: 1/2; }
       #reviews-list li .rating i {
         margin: 0 3px; }
     #reviews-list li .comments {
