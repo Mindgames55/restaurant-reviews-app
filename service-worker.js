@@ -9,7 +9,7 @@ var filesToCache = [
   'js/dbhelper.js'
 ];//
 
-var staticCacheName = 'pages-cache-v12';
+var staticCacheName = 'pages-cache-v1';
 
 self.addEventListener('install', function(event) {
   console.log('Attempting to install service worker and cache static assets');
