@@ -510,7 +510,7 @@ section.go-offscreen {
       margin-left: 10px;
       width: auto;
       color: orange;
-      grid-column: 1/2; }
+      grid-column: 1/-1; }
       #reviews-list li .rating i {
         margin: 0 3px; }
     #reviews-list li .comments {
