@@ -193,7 +193,6 @@ body.auto {
       margin: 10px;
       padding: 0 10px; }
   .main.list-div {
-    margin-top: 10px;
     height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
@@ -376,6 +375,17 @@ section.go-offscreen {
           animation: slideIn forwards;
   -webkit-animation-duration: 0.5s;
           animation-duration: 0.5s; }
+
+.listScreen {
+  display: grid;
+  grid-template-rows: 1fr 30vh 50vh 1fr; }
+  .listScreen .header {
+    height: 100%; }
+  .listScreen .list-div {
+    margin-top: 10px;
+    grid-row: 3/4; }
+  .listScreen .footer {
+    grid-row: 4/5; }
 
 /* ====================== Restaurant Details ====================== */
 .inside {
