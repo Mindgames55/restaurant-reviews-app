@@ -145,16 +145,28 @@ body.auto {
     -webkit-animation: slideUp 0.5s forwards;
             animation: slideUp 0.5s forwards; }
 
-.listScreen .header,
-.listScreen .footer {
-  height: 10vh; }
-
-.listScreen #map-container {
-  height: 40vh;
-  width: 100%; }
-  .listScreen #map-container #map {
-    width: 100%;
+.listScreen {
+  min-height: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: grid;
+  grid-template-rows: 50px 30vh 1fr 50px; }
+  .listScreen .header,
+  .listScreen .footer {
     height: 100%; }
+  .listScreen .list-div {
+    margin-top: 10px;
+    grid-row: 3/4; }
+  .listScreen .footer {
+    grid-row: 4/5; }
+  .listScreen #map-container {
+    grid-row: 2/3;
+    height: 100%;
+    width: 100%; }
+    .listScreen #map-container #map {
+      width: 100%;
+      height: 100%; }
 
 .back {
   grid-column: 1/-1;
@@ -375,17 +387,6 @@ section.go-offscreen {
           animation: slideIn forwards;
   -webkit-animation-duration: 0.5s;
           animation-duration: 0.5s; }
-
-.listScreen {
-  display: grid;
-  grid-template-rows: 1fr 30vh 50vh 1fr; }
-  .listScreen .header {
-    height: 100%; }
-  .listScreen .list-div {
-    margin-top: 10px;
-    grid-row: 3/4; }
-  .listScreen .footer {
-    grid-row: 4/5; }
 
 /* ====================== Restaurant Details ====================== */
 .inside {
