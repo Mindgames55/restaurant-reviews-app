@@ -86,7 +86,7 @@ img {
   border: 0;
   margin: 0 10px; }
 
-.header nav a, .inside header nav a {
+.header nav a, .inside header .app-name a {
   color: #fff;
   font-size: 12pt;
   font-weight: 150;
@@ -393,7 +393,7 @@ section.go-offscreen {
     /* Add a slash symbol (/) before/behind each list item */
     /* Add a color to all links inside the list */
     /* Add a color on mouse-over */ }
-    .inside header nav {
+    .inside header .app-name {
       background-color: #252831;
       text-align: center;
       height: 50px;
@@ -423,6 +423,8 @@ section.go-offscreen {
     .inside header #breadcrumb li a {
       color: #0275d8;
       text-decoration: none; }
+      .inside header #breadcrumb li a[aria-current="page"] {
+        color: #000; }
     .inside header #breadcrumb li a:hover {
       color: orange; }
   .inside #map-container {

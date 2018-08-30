@@ -31,7 +31,7 @@ const view = {
         break;
       case 'listScreen':
         view.screenContent = {
-          headerContent: `<nav>
+          headerContent: `<nav class="app-name">
                             <h1><a href="/restaurant-reviews-app/">Restaurant Reviews</a></h1>
                           </nav>`,
           mainContent: `<ul id="restaurants-list"></ul>`,
@@ -42,7 +42,7 @@ const view = {
         break;
       default:
         view.screenContent = {
-          headerContent: `<nav>
+          headerContent: `<nav class="app-name">
                             <h1><a href="/restaurant-reviews-app/">Restaurant Reviews</a></h1>
                           </nav>`,
           mainContent: `<section id="map-container">
@@ -270,7 +270,7 @@ const view = {
     const image = document.createElement('img');
     image.className = 'restaurant-img';
     image.src = DBHelper.imageUrlForRestaurant(restaurant);
-    image.setAttribute("alt", `An image of the restaurant ${restaurant.name} with cuisine ${restaurant.cuisine_type}`);
+    image.setAttribute("alt", `An image of the restaurant ${restaurant.name} with ${restaurant.cuisine_type} cuisine`);
     li.append(image);
 
     const name = document.createElement('h2');
@@ -294,6 +294,7 @@ const view = {
     const more = document.createElement('a');
     more.innerHTML = 'View Details';
     more.href = DBHelper.urlForRestaurant(restaurant);
+    more.setAttribute("aria-label", `restaurant ${restaurant.name} details`);
     li.append(more)
 
     return li;

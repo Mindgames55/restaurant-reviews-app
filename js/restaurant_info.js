@@ -78,7 +78,7 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
 
   const image = document.getElementById('restaurant-img');
   image.className = 'restaurant-img'
-  image.setAttribute("alt", restaurant.name);
+  image.setAttribute("alt", `An image of the restaurant ${restaurant.name} with ${restaurant.cuisine_type} cuisine`);
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
 
 
@@ -168,9 +168,9 @@ createReviewHTML = (review) => {
  * Add restaurant name to the breadcrumb navigation menu
  */
 fillBreadcrumb = (restaurant=self.restaurant) => {
-  const breadcrumb = document.getElementById('breadcrumb');
+  const breadcrumb = document.getElementById('breadcrumb').children[0];
   const li = document.createElement('li');
-  li.innerHTML = restaurant.name;
+  li.innerHTML = `<a href="#" aria-current="page">${restaurant.name}</a>`;
   breadcrumb.appendChild(li);
 }
 
