@@ -79,7 +79,10 @@ const view = {
           view.filterScreen.clear();
           view.handleScreens(document.querySelector('.filterScreen'));
       }
-      document.getElementById("neighborhoods-select").focus();
+      const filterMain = document.querySelector(".filter-div");
+      filterMain.tabIndex = -1;
+      filterMain.focus();
+
       // const home = document.querySelector('#homeScreen');
       // home.classList.remove('home-init');
       // view.handleScreens(home);
@@ -429,7 +432,7 @@ initMap = () => {
         scrollWheelZoom: false
       });
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.jpg70?access_token={mapboxToken}', {
-//     mapboxToken: 'pk.eyJ1IjoibWF5Z3VlbiIsImEiOiJjamtxODg3a28xbHluM3dwOGh3dndpMzFlIn0.yTv3Ada0WEVS3uUlLk9-ow',
+    mapboxToken: 'pk.eyJ1IjoibWF5Z3VlbiIsImEiOiJjamtxODg3a28xbHluM3dwOGh3dndpMzFlIn0.yTv3Ada0WEVS3uUlLk9-ow',
     maxZoom: 18,
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
       '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
